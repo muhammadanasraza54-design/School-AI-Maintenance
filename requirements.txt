@@ -2,4 +2,4 @@ streamlit
 ultralytics
 opencv-python
 pillow
-google-generativeai
+google-generativeai>=0.5.0
