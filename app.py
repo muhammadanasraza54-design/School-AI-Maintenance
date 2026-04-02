@@ -3,7 +3,8 @@ import google.generativeai as genai
 from PIL import Image
 
 # Setup Gemini AI
-# Streamlit secrets se key uthane ka sahi tareeqa
+
+# Sahi tareeqa secrets se key uthane ka
 api_key = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel('gemini-1.5-flash')
