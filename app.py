@@ -3,7 +3,7 @@ import google.generativeai as genai
 from PIL import Image
 
 # Setup Gemini AI
-genai.configure(api_key="AIzaSyCBmNfVrtHO4SprStz_Es3rP7dtuq7k63c")
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 st.set_page_config(page_title="School AI Maintenance", layout="wide")
