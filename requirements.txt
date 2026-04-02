@@ -1,4 +1,4 @@
-google-generativeai>=0.5.0
-streamlit>=1.30.0
+google-generativeai==0.5.4
+streamlit==1.32.2
 Pillow
-pydantic>=2.0
+pydantic==2.7.1
