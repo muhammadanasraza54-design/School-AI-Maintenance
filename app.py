@@ -4,7 +4,7 @@ from PIL import Image
 
 # Setup Gemini AI
 genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
-model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 st.set_page_config(page_title="School AI Maintenance", layout="wide")
 st.title("🏗️ School Maintenance Real-AI Analyzer")
