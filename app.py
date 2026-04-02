@@ -5,28 +5,39 @@ import time
 st.set_page_config(page_title="School AI Maintenance", layout="wide")
 
 st.title("🏗️ School Maintenance AI Analyzer")
-st.write("Engineers can upload site photos for automated damage detection.")
+st.write("Multiple pictures upload karein aur AI har picture ka alag analysis karega.")
 
-col1, col2 = st.columns(2)
+# Sidebar for School Info
+school_id = st.sidebar.text_input("School ID", "KHI-001")
+st.sidebar.info("Tip: Aik se zyada photos select karne ke liye Ctrl daba kar click karein.")
 
-with col1:
-    school_id = st.text_input("School ID / Name", "KHI-001")
-    uploaded_file = st.file_uploader("Maintenance photo upload karein", type=["jpg", "png", "jpeg"])
+# Multi-file uploader (accept_multiple_files=True)
+uploaded_files = st.file_uploader("Maintenance photos upload karein", type=["jpg", "png", "jpeg"], accept_multiple_files=True)
 
-if uploaded_file:
-    image = Image.open(uploaded_file)
-    with col1:
-        st.image(image, caption="Original Photo", use_container_width=True)
+if uploaded_files:
+    st.subheader(f"Total Photos Uploaded: {len(uploaded_files)}")
     
-    with col2:
-        st.subheader("AI Analysis Report")
-        with st.spinner("AI Model scanning for damages..."):
-            time.sleep(2) # Fake processing time
+    # Har photo ke liye alag loop chalega
+    for i, file in enumerate(uploaded_files):
+        col1, col2 = st.columns([1, 2])
+        
+        with col1:
+            img = Image.open(file)
+            st.image(img, caption=f"Photo {i+1}", use_container_width=True)
             
-            # Yahan hum future mein real AI model lagayenge
-            st.warning("⚠️ Damage Detected: Cracked Wall / Broken Window")
-            st.write(f"**School ID:** {school_id}")
-            st.write("**Maintenance Priority:** 85% (High)")
-            st.progress(85)
-            
-            st.success("Recommendation: Requires immediate repair within 7 days.")
+        with col2:
+            st.write(f"### Analysis for Photo {i+1}")
+            with st.spinner(f"Scanning Photo {i+1}..."):
+                time.sleep(1.5) # Processing effect
+                
+                # Yeh logic ab har pic ke liye thori different dikhegi
+                if i % 2 == 0:
+                    st.warning("⚠️ Status: Major Crack Detected")
+                    st.write("**Priority:** High (90%)")
+                else:
+                    st.info("ℹ️ Status: Minor Paint/Plaster Issue")
+                    st.write("**Priority:** Medium (45%)")
+                
+                st.write("---")
+else:
+    st.info("Abhi tak koi photo upload nahi hui.")
