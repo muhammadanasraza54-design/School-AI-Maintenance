@@ -3,7 +3,9 @@ import google.generativeai as genai
 from PIL import Image
 
 # Setup Gemini AI
-genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
+# Streamlit secrets se key uthane ka sahi tareeqa
+api_key = st.secrets["GEMINI_API_KEY"]
+genai.configure(api_key=api_key)
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 st.set_page_config(page_title="School AI Maintenance", layout="wide")
